@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.lcobucci.com.br/services/CalculadoraFresca" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CalculadoraFresca" targetNamespace="http://www.lcobucci.com.br/services/CalculadoraFresca">
+  <wsdl:types>
+	<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.lcobucci.com.br/services/CalculadoraFresca">
+		<xsd:complexType name="Resultado">
+			<xsd:sequence>
+				<xsd:element name="num1" type="xsd:float" />
+				<xsd:element name="num2" type="xsd:float" />
+				<xsd:element name="total" type="xsd:float" />
+			</xsd:sequence>	
+		</xsd:complexType>
+	</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="somaRequest">
+    <wsdl:part name="num1" type="xsd:float"/>
+    <wsdl:part name="num2" type="xsd:float"/>
+  </wsdl:message>
+  <wsdl:message name="somaResponse">
+    <wsdl:part name="response" type="tns:Resultado"/>
+  </wsdl:message>
+  <wsdl:message name="subtraiRequest">
+    <wsdl:part name="num1" type="xsd:float"/>
+    <wsdl:part name="num2" type="xsd:float"/>
+  </wsdl:message>
+  <wsdl:message name="subtraiResponse">
+    <wsdl:part name="response" type="tns:Resultado"/>
+  </wsdl:message>
+  <wsdl:message name="multiplicaRequest">
+    <wsdl:part name="num1" type="xsd:float"/>
+    <wsdl:part name="num2" type="xsd:float"/>
+  </wsdl:message>
+  <wsdl:message name="multiplicaResponse">
+    <wsdl:part name="response" type="tns:Resultado"/>
+  </wsdl:message>
+  <wsdl:message name="divideRequest">
+    <wsdl:part name="num1" type="xsd:float"/>
+    <wsdl:part name="num2" type="xsd:float"/>
+  </wsdl:message>
+  <wsdl:message name="divideResponse">
+    <wsdl:part name="response" type="tns:Resultado"/>
+  </wsdl:message>
+  <wsdl:portType name="CalculadoraFresca">
+    <wsdl:operation name="soma">
+      <wsdl:input message="tns:somaRequest"/>
+      <wsdl:output message="tns:somaResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="subtrai">
+      <wsdl:input message="tns:subtraiRequest"/>
+      <wsdl:output message="tns:subtraiResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="multiplica">
+      <wsdl:input message="tns:multiplicaRequest"/>
+      <wsdl:output message="tns:multiplicaResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="divide">
+      <wsdl:input message="tns:divideRequest"/>
+      <wsdl:output message="tns:divideResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CalculadoraFrescaSOAP" type="tns:CalculadoraFresca">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="soma">
+      <soap:operation soapAction="http://www.lcobucci.com.br/services/CalculadoraFresca/soma"/>
+      <wsdl:input>
+        <soap:body namespace="http://www.lcobucci.com.br/services/CalculadoraFresca" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body namespace="http://www.lcobucci.com.br/services/CalculadoraFresca" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="subtrai">
+      <soap:operation soapAction="http://www.lcobucci.com.br/services/CalculadoraFresca/subtrai"/>
+      <wsdl:input>
+        <soap:body namespace="http://www.lcobucci.com.br/services/CalculadoraFresca" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body namespace="http://www.lcobucci.com.br/services/CalculadoraFresca" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="multiplica">
+      <soap:operation soapAction="http://www.lcobucci.com.br/services/CalculadoraFresca/multiplica"/>
+      <wsdl:input>
+        <soap:body namespace="http://www.lcobucci.com.br/services/CalculadoraFresca" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body namespace="http://www.lcobucci.com.br/services/CalculadoraFresca" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="divide">
+      <soap:operation soapAction="http://www.lcobucci.com.br/services/CalculadoraFresca/divide"/>
+      <wsdl:input>
+        <soap:body namespace="http://www.lcobucci.com.br/services/CalculadoraFresca" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body namespace="http://www.lcobucci.com.br/services/CalculadoraFresca" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CalculadoraFresca">
+    <wsdl:port binding="tns:CalculadoraFrescaSOAP" name="CalculadoraFrescaSOAP">
+      <soap:address location="http://172.16.1.42/soap/public/calculadora_fresca.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
